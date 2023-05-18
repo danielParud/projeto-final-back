@@ -5,8 +5,8 @@ export async function isAdmin(req, res, next) {
     }
 
     next();
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json(e);
   }
 }

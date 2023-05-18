@@ -16,8 +16,8 @@ export default async function attachCurrentUser(req, res, next) {
     req.currentUser = user;
 
     next();
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json(err);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json(e);
   }
 }
