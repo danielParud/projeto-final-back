@@ -1,11 +1,6 @@
-# API RESTful template + Token Based Auth
+# Back End - EasyPlan
 
-Template para construção de APIs utilizando Node, Express, JWT e Mongoose.
+Construção de APIs utilizando Node, Express, JWT e Mongoose. 
 
-**Utilização:**
+EasyPlan é um planejador virtual de projetos onde pode se postar um projeto com detalhes e status de compleção. Cada usuário pode criar "bords" e dentro dessas bords postar, editar, comentar e deletar os seus projetos.
 
-- Clique no botão "Use this template"
-- Clone o repo que for criado nesse processo
-- Execute o comando `npm install` no terminal na raiz do projeto
-- Crie um arquivo `.env` baseado no arquivo `.exemple.env` presente no repositório e preencha as variaveis
-- Para colocar o servidor para rodar, execute no terminal o comando `npm run dev`
