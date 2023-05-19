@@ -3,10 +3,9 @@ export async function isAdmin(req, res, next) {
     if (req.currentUser.role !== "ADMIN") {
       return res.status(401).json({ msg: "User unauthorized." });
     }
-
     next();
-  } catch (e) {
-    console.log(e);
-    return res.status(500).json(e);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
   }
 }

@@ -9,10 +9,28 @@ const userRouter = express.Router();
 
 userRouter.post("/signup", async (req, res) => {
   try {
-    const { password } = req.body;
+    const { email, name, password, confirmPassword } = req.body;
+
+    if (!email || !name || !password || !confirmPassword) {
+      return res.status(400).json({
+        msg: "Please fill all fields..!!",
+      });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        msg: "Password not match with confirm password..!!",
+      });
+    }
+
+    const userExist = await UserModel.findOne({ email });
+    if (userExist) {
+      return res.status(400).json({
+        msg: "User already exist..!!",
+      });
+    }
 
     if (
-      !password ||
       !password.match(
         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/gm
       )
@@ -27,11 +45,12 @@ userRouter.post("/signup", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const createdUser = await UserModel.create({
-      ...req.body,
+      name: name,
+      email: email,
       passwordHash: hashedPassword,
     });
 
-    delete createdUser._doc.passwordHash;
+    // delete createdUser._doc.passwordHash;
     return res.status(201).json(createdUser);
   } catch (err) {
     console.log(err);

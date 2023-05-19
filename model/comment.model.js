@@ -1,9 +1,9 @@
-import { Schema, model, Types} from "mongoose";
+import { Schema, model } from "mongoose";
 
-const commentSchema = new Schema ({
-    text: { type: String, required: true, trim: true},
-    creator: { type: Types.ObjectId, ref: "User"},
-    referenceProject: {type:Types.ObjectId, ref: "Project" }
-})
+const commentSchema = new Schema({
+  comment: { type: String, required: true, trim: true },
+  projectId: { type: String, required: true, trim: true },
+  createdAt: { type: Date, default: Date.now() },
+});
 
-export const CommentModel = model("Comment", commentSchema)
+export const CommentModel = model("Comment", commentSchema);
